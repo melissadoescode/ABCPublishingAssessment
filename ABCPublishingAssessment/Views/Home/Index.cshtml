@@ -1,0 +1,30 @@
+﻿
+@model ABCPublishingAssessment.Models.JsonData
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+        <dl class="dl-horizontal">
+            @Html.DisplayFor(model => model.Title)
+        </dl>
+        <dl class="dl-horizontal">
+            @if (Model.Navigation != null)
+            {
+                foreach (var item in Model.Navigation)
+                {
+                    <p>@Html.ActionLink(item.Text, "index", new { key = item.Section })</p>
+                }
+
+                foreach (var item in Model.Content)
+                {
+                    <p>@Html.DisplayFor(x => item)</p>
+                }
+            }
+            else
+            {
+                <p>No Content</p>
+                <p>@Html.ActionLink("Go back", "index", new { key = "" })</p>
+            }
+        </dl>
+    </div>
